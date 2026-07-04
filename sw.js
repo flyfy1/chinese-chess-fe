@@ -1,1 +1,25 @@
-if(!self.define){let e,i={};const s=(s,n)=>(s=new URL(s+".js",n).href,i[s]||new Promise(i=>{if("document"in self){const e=document.createElement("script");e.src=s,e.onload=i,document.head.appendChild(e)}else e=s,importScripts(s),i()}).then(()=>{let e=i[s];if(!e)throw new Error(`Module ${s} didn’t register its module`);return e}));self.define=(n,r)=>{const t=e||("document"in self?document.currentScript.src:"")||location.href;if(i[t])return;let f={};const o=e=>s(e,t),l={module:{uri:t},exports:f,require:o};i[t]=Promise.all(n.map(e=>l[e]||o(e))).then(e=>(r(...e),f))}}define(["./workbox-9c191d2f"],function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"registerSW.js",revision:"5f9d4c2f8e003b0220bb40a592fb7b9f"},{url:"index.html",revision:"a3613669967e2edf162f1f7aaee7c97a"},{url:"assets/index-DQghiuJc.js",revision:null},{url:"assets/index-BMlI8Vq5.css",revision:null},{url:"pwa-192.png",revision:"df2403d4838bbc966d98a2b9e91f6fcd"},{url:"pwa-512.png",revision:"71bfc59f8e86cf05eaaeda8ef66fbe27"},{url:"manifest.webmanifest",revision:"e898aafa303e64cce9535943f12c396e"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html"),{denylist:[/^\/api\//]}))});
+
+self.addEventListener('install', (e) => {
+  self.skipWaiting();
+});
+self.addEventListener('activate', (e) => {
+  self.registration.unregister()
+    .then(() => self.clients.matchAll())
+    .then((clients) => {
+      clients.forEach((client) => {
+        if (client instanceof WindowClient)
+          client.navigate(client.url);
+      });
+      return Promise.resolve();
+    })
+    .then(() => {
+      self.caches.keys().then((cacheNames) => {
+        Promise.all(
+          cacheNames.map((cacheName) => {
+            return self.caches.delete(cacheName);
+          }),
+        );
+      })
+    });
+});
+    
