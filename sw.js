@@ -1,10 +1,1 @@
-self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('activate', (event) => {
-  event.waitUntil((async () => {
-    await self.registration.unregister();
-    const keys = await caches.keys();
-    await Promise.all(keys.map((key) => caches.delete(key)));
-    const clients = await self.clients.matchAll({ type: 'window' });
-    for (const client of clients) client.navigate(client.url);
-  })());
-});
+if(!self.define){let e,s={};const i=(i,n)=>(i=new URL(i+".js",n).href,s[i]||new Promise(s=>{if("document"in self){const e=document.createElement("script");e.src=i,e.onload=s,document.head.appendChild(e)}else e=i,importScripts(i),s()}).then(()=>{let e=s[i];if(!e)throw new Error(`Module ${i} didn’t register its module`);return e}));self.define=(n,r)=>{const o=e||("document"in self?document.currentScript.src:"")||location.href;if(s[o])return;let t={};const f=e=>i(e,o),l={module:{uri:o},exports:t,require:f};s[o]=Promise.all(n.map(e=>l[e]||f(e))).then(e=>(r(...e),t))}}define(["./workbox-98f7a950"],function(e){"use strict";self.addEventListener("message",e=>{e.data&&"SKIP_WAITING"===e.data.type&&self.skipWaiting()}),e.precacheAndRoute([{url:"index.html",revision:"deeada62fe7b1e47e16793fe664fe21b"},{url:"assets/workbox-window.prod.es5-Bd17z0YL.js",revision:null},{url:"assets/index-CMZxs49R.js",revision:null},{url:"assets/index-BX5BfC59.css",revision:null},{url:"favicon.svg",revision:"7e840862161341271697daa99a40d76b"},{url:"icons.svg",revision:"3b4fcfcf393eca4d264dca4a4663bc37"},{url:"pwa-192.png",revision:"df2403d4838bbc966d98a2b9e91f6fcd"},{url:"pwa-512.png",revision:"71bfc59f8e86cf05eaaeda8ef66fbe27"},{url:"manifest.webmanifest",revision:"38386212526662583f4180cefd8d00f2"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html"),{denylist:[/^\/api\//]})),e.registerRoute(({url:e})=>e.pathname.startsWith("/api/"),new e.NetworkOnly,"GET")});
