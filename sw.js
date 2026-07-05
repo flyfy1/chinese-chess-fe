@@ -1,25 +1,10 @@
-
-self.addEventListener('install', (e) => {
-  self.skipWaiting();
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    await self.registration.unregister();
+    const keys = await caches.keys();
+    await Promise.all(keys.map((key) => caches.delete(key)));
+    const clients = await self.clients.matchAll({ type: 'window' });
+    for (const client of clients) client.navigate(client.url);
+  })());
 });
-self.addEventListener('activate', (e) => {
-  self.registration.unregister()
-    .then(() => self.clients.matchAll())
-    .then((clients) => {
-      clients.forEach((client) => {
-        if (client instanceof WindowClient)
-          client.navigate(client.url);
-      });
-      return Promise.resolve();
-    })
-    .then(() => {
-      self.caches.keys().then((cacheNames) => {
-        Promise.all(
-          cacheNames.map((cacheName) => {
-            return self.caches.delete(cacheName);
-          }),
-        );
-      })
-    });
-});
-    
