@@ -6,6 +6,6 @@
     <circle cx="256" cy="256" r="184" fill="#451a03"/>
     <circle cx="256" cy="256" r="154" fill="#c2410c" stroke="#fde68a" stroke-width="10"/>
     <circle cx="256" cy="256" r="116" fill="none" stroke="#7f1d1d" stroke-width="9"/>
-    <text x="256" y="316" text-anchor="middle" font-family="STKaiti, KaiTi, Kaiti SC, Noto Serif CJK SC, serif" font-size="154" font-weight="800" fill="#fff7ed" stroke="#7f1d1d" stroke-width="4" paint-order="stroke">帅</text>
+    <text x="256" y="266" text-anchor="middle" dominant-baseline="central" font-family="Noto Serif CJK SC, STKaiti, KaiTi, Kaiti SC, serif" font-size="154" font-weight="800" fill="#fff7ed" stroke="#7f1d1d" stroke-width="4" paint-order="stroke">帅</text>
   </symbol>
 </svg>
