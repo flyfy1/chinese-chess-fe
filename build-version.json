@@ -2,8 +2,8 @@
   "schema": "integ.life/build-version/v1",
   "repository": "integ-life/chinese-chess",
   "service": "chinese-chess.integ.life",
-  "version": "git-3302709c6264",
-  "commit": "3302709c626468ed24c3a305f7a4457cef8b19df",
-  "builtAt": "2026-08-12T22:21:22.604Z",
+  "version": "git-24506436d79a",
+  "commit": "24506436d79ab4d9fbb2abd4351c113e2e0a2217",
+  "builtAt": "2026-08-12T22:29:24.726Z",
   "dirty": false
 }
